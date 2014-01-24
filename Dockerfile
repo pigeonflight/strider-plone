@@ -7,7 +7,7 @@ maintainer David Bain <david@alteroo.com>
 # do this as single-line run until https://github.com/dotcloud/docker/issues/1171 is fixed
 run  \
     useradd -m strider ;\
-    export CUSTOM_PACKAGES = libxslt-dev libjpeg8-dev poppler-utils  tmux wv libgeos-c1 libpcre3-dev pkg-config libncurses-dev autotools-dev automake1.9 libtool autoconf phantomjs;\
+    CUSTOM_PACKAGES="libxslt-dev libjpeg8-dev poppler-utils  tmux wv libgeos-c1 libpcre3-dev pkg-config libncurses-dev autotools-dev automake1.9 libtool autoconf phantomjs ";\
     dpkg-divert --local --rename --add /sbin/initctl ;\
     ln -s /bin/true /sbin/initctl ;\
     echo "deb http://archive.ubuntu.com/ubuntu quantal main universe" > /etc/apt/sources.list ;\
