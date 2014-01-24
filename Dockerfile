@@ -1,4 +1,4 @@
-# DOCKER-VERSION 0.6.6
+# DOCKER-VERSION 0.7.6
 
 from  ubuntu
 maintainer David Bain <david@alteroo.com>
