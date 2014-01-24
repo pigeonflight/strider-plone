@@ -3,6 +3,7 @@
 from  ubuntu
 maintainer David Bain <david@alteroo.com>
 
+# based on niallo/strider by Niall O'Higgins <niallo@frozenridge.co>
 # do this as single-line run until https://github.com/dotcloud/docker/issues/1171 is fixed
 run  \
     useradd -m strider ;\
