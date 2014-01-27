@@ -6,8 +6,9 @@ maintainer David Bain <david@alteroo.com>
 # based on niallo/strider by Niall O'Higgins <niallo@frozenridge.co>
 # do this as single-line run until https://github.com/dotcloud/docker/issues/1171 is fixed
 run  \
+    echo "PATH=$PATH:/src/appengine" ;\
     useradd -m strider ;\
-    CUSTOM_PACKAGES="libxslt-dev libjpeg8-dev poppler-utils  python-virtualenv python-lxml python-imaging tmux wv libgeos-c1 libpcre3-dev pkg-config libncurses-dev autotools-dev automake1.9 libtool autoconf phantomjs ";\
+    CUSTOM_PACKAGES="libxslt-dev libjpeg8-dev poppler-utils language-pack-en-base python-virtualenv python-lxml python-imaging tmux wv libgeos-c1 libpcre3-dev pkg-config libncurses-dev autotools-dev automake1.9 libtool autoconf phantomjs ";\
     dpkg-divert --local --rename --add /sbin/initctl ;\
     ln -s /bin/true /sbin/initctl ;\
     echo "deb http://archive.ubuntu.com/ubuntu quantal main universe" > /etc/apt/sources.list ;\
@@ -33,7 +34,11 @@ run  \
     /usr/bin/mongod --smallfiles --fork --logpath mongo.log ;\
     sleep 2 ;\
     echo "db.users.find()" | mongo localhost/strider-foss | grep test@example.com ;\
-    chown -R strider /src
+    chown -R strider /src ;\
+
+#inject appengine files
+add docker/appengine /src/appengine
+add docker/etc/bash /etc/
 
 # inject supervisord.conf
 add  docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
